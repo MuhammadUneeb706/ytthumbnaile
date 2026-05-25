@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Thumbnail Downloader</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3044396438066729"
+     crossorigin="anonymous"></script>
+    <style>
+        :root {
+            /* Dark Theme Colors (Default) */
+            --bg-color: #0f0f0f;
+            --card-bg: #1f1f1f;
+            --accent-color: #ff0000;
+            --accent-hover: #cc0000;
+            --text-color: #f1f1f1;
+            --text-muted: #aaaaaa;
+            --border-color: #383838;
+            --toggle-bg: #333333;
+        }
+
+        [data-theme="light"] {
+            /* Light Theme Colors */
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --accent-color: #ff0000;
+            --accent-hover: #cc0000;
+            --text-color: #0f0f0f;
+            --text-muted: #606060;
+            --border-color: #e5e5e5;
+            --toggle-bg: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Smooth animation for dark/light mode transition */
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Theme Toggle Button Styling */
+        .theme-toggle-container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+        }
+
+        .theme-toggle-btn {
+            background-color: var(--toggle-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle-btn:hover {
+            opacity: 0.9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        h1 span {
+            color: var(--accent-color);
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            max-width: 700px;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .input-area input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-color);
+            padding: 0 20px;
+            font-size: 1rem;
+        }
+
+        .input-area button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+
+        .input-area button:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Affiliate Link Styling */
+        .affiliate-link {
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .affiliate-link a {
+            color: #3ea6ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .affiliate-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* AdSense Placeholder */
+        #ad-unit {
+            width: 100%;
+            max-width: 728px;
+            min-height: 90px;
+            background: var(--card-bg);
+            border: 1px dashed var(--border-color);
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-radius: 8px;
+        }
+
+        /* Thumbnails Grid */
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .thumbnail-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .thumbnail-card img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .download-btn {
+            background: #333;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            background: #444;
+        }
+
+        /* Error Message */
+        #error-msg {
+            color: var(--accent-color);
+            margin-top: 10px;
+            font-weight: 500;
+            display: none;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            .input-area {
+                border-radius: 12px;
+                flex-direction: column;
+                padding: 8px;
+            }
+            .input-area input {
+                padding: 12px;
+                text-align: center;
+            }
+            .input-area button {
+                border-radius: 8px;
+                width: 100%;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .theme-toggle-container {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="theme-toggle-container">
+        <button class="theme-toggle-btn" onclick="toggleTheme()" id="theme-btn">
+            <span id="theme-icon">☀️</span> <span id="theme-text">Light Mode</span>
+        </button>
+    </div>
+
+    <div class="container">
+        <h1>YouTube <span>Thumbnail</span> Downloader</h1>
+        <p class="subtitle">Grab high-quality thumbnail images from any YouTube video instantly.</p>
+
+        <div class="input-area">
+            <input type="text" id="video-url" placeholder="Paste YouTube video link here... (e.g., https://youtu.be/...)" autocomplete="off">
+            <button onclick="getThumbnails()">Get Thumbnails</button>
+        </div>
+        
+        <p id="error-msg">Please enter a valid YouTube URL.</p>
+
+        <div class="affiliate-link">
+            Recommended video editor: <a href="https://example.com/affiliate-link" target="_blank" rel="noopener nofollow">Try it free here</a>
+        </div>
+
+        <div id="ad-unit">
+            <p>Advertisement Placeholder (AdSense 728x90 / Responsive)</p>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+            <a href="about.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">About Us</a>
+            <a href="privacy.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Privacy Policy</a>
+            <a href="contact.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Contact Us</a>
+        </div>
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">© 2025 YouTube Thumbnail Downloader. All rights reserved.</p>
+
+        <div class="thumbnail-grid">
+            <div class="thumbnail-card" id="card-max">
+                <img id="img-max" src="" alt="Maximum Resolution Thumbnail">
+                <div class="card-body">
+                    <span class="card-title">Maximum Quality (1080p/720p)</span>
+                    <button class="download-btn" onclick="forceDownload('max')">Download HD</button>
+                </div>
+            </div>
+
+            <div class="thumbnail-card" id="card-sd">
+                <img id="img-sd" src="" alt="Standard Definition Thumbnail">
+                <div class="card-body">
+                    <span class="card-title">Standard Quality (480p)</span>
+                    <button class="download-btn" onclick="forceDownload('sd')">Download SD</button>
+                </div>
+            </div>
+
+            <div class="thumbnail-card" id="card-hq">
+                <img id="img-hq" src="" alt="High Quality Thumbnail">
+                <div class="card-body">
+                    <span class="card-title">Medium Quality (360p)</span>
+                    <button class="download-btn" onclick="forceDownload('hq')">Download MQ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        // Store current URLs globally for download functionality
+        let currentThumbnails = { max: '', sd: '', hq: '' };
+
+        // --- Dark/Light Mode Logic ---
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            if (theme === 'dark') {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        // Initialize theme instantly on page load
+        initTheme();
+
+        // --- Core Application Logic ---
+        function extractVideoID(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/|live\/)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        function getThumbnails() {
+            const urlInput = document.getElementById('video-url').value.trim();
+            const errorMsg = document.getElementById('error-msg');
+            const videoId = extractVideoID(urlInput);
+
+            if (!videoId) {
+                errorMsg.style.display = 'block';
+                hideCards();
+                return;
+            }
+
+            errorMsg.style.display = 'none';
+
+            // Construct URLs
+            currentThumbnails.max = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            currentThumbnails.sd = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
+            currentThumbnails.hq = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
+            // Assign images sources and show components
+            displayCard('max', currentThumbnails.max);
+            displayCard('sd', currentThumbnails.sd);
+            displayCard('hq', currentThumbnails.hq);
+        }
+
+        function displayCard(type, url) {
+            const card = document.getElementById(`card-${type}`);
+            const img = document.getElementById(`img-${type}`);
+            
+            img.src = url;
+            card.style.display = 'flex';
+        }
+
+        function hideCards() {
+            document.getElementById('card-max').style.display = 'none';
+            document.getElementById('card-sd').style.display = 'none';
+            document.getElementById('card-hq').style.display = 'none';
+        }
+
+        // Bypasses browser navigation to directly prompt a download file dialog
+        async function forceDownload(type) {
+            const imageUrl = currentThumbnails[type];
+            if (!imageUrl) return;
+
+            try {
+                // Fetch the image via blob to bypass normal anchor tag navigation rules
+                const response = await fetch(imageUrl);
+                const blob = await response.blob();
+                const objectUrl = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.href = objectUrl;
+                link.download = `youtube_thumbnail_${type}.jpg`;
+                document.body.appendChild(link);
+                link.click();
+                
+                // Cleanup
+                document.body.removeChild(link);
+                URL.revokeObjectURL(objectUrl);
+            } catch (error) {
+                // Fallback method if CORS issues occur in certain test environments
+                window.open(imageUrl, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
