@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube Thumbnail Downloader - Download HD, SD, MQ Thumbnails Free</title>
-<meta name="description" content="Free YouTube Thumbnail Downloader - Download thumbnails in HD (1080p), SD (480p), and MQ (360p) quality instantly. No signup required. Paste URL & download!">
-<meta name="keywords" content="youtube thumbnail downloader, download youtube thumbnail, yt thumbnail grabber, youtube thumbnail hd download, free thumbnail downloader">
+    <meta name="description" content="Free YouTube Thumbnail Downloader - Download thumbnails in HD (1080p), SD (480p), and MQ (360p) quality instantly. No signup required. Paste URL & download!">
+    <meta name="keywords" content="youtube thumbnail downloader, download youtube thumbnail, yt thumbnail grabber, youtube thumbnail hd download, free thumbnail downloader">
+    
+    <!-- Schema Markup for Rich Results -->
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "YouTube Thumbnail Downloader",
-  "url": "https://ytthumbnaile.netlify.app/thumbnail.html",
-  "description": "Download high-quality YouTube thumbnails in HD, SD, and MQ quality instantly.",
-  "applicationCategory": "Multimedia",
-  "operatingSystem": "All",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-}
-</script>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "YouTube Thumbnail Downloader",
+      "url": "https://ytthumbnaile.netlify.app/thumbnail.html",
+      "description": "Download high-quality YouTube thumbnails in HD, SD, and MQ quality instantly.",
+      "applicationCategory": "Multimedia",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <!-- AdSense (replace with your own publisher ID when approved) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3044396438066729"
      crossorigin="anonymous"></script>
+     
+    <!-- Additional Ad Network (keep as is) -->
     <script src="https://throughalivemedication.com/9d/6b/de/9d6bde07d8ec6b1377649af5e4fc34eb.js"></script>
 
     <style>
@@ -56,7 +62,6 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Smooth animation for dark/light mode transition */
             transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
@@ -70,7 +75,6 @@
             min-height: 100vh;
         }
 
-        /* Theme Toggle Button Styling */
         .theme-toggle-container {
             width: 100%;
             max-width: 1000px;
@@ -158,7 +162,6 @@
             background: var(--accent-hover);
         }
 
-        /* Affiliate Link Styling */
         .affiliate-link {
             margin-bottom: 30px;
             font-size: 0.9rem;
@@ -174,8 +177,8 @@
             text-decoration: underline;
         }
 
-        /* AdSense Placeholder */
-        #ad-unit {
+        /* Ad placeholder (for Adsterra) */
+        .ad-placeholder {
             width: 100%;
             max-width: 728px;
             min-height: 90px;
@@ -190,7 +193,6 @@
             border-radius: 8px;
         }
 
-        /* Thumbnails Grid */
         .thumbnail-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -204,7 +206,7 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            display: none; /* Hidden by default */
+            display: none;
             flex-direction: column;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
@@ -250,7 +252,6 @@
             background: #444;
         }
 
-        /* Error Message */
         #error-msg {
             color: var(--accent-color);
             margin-top: 10px;
@@ -258,7 +259,43 @@
             display: none;
         }
 
-        /* Mobile Optimization */
+        /* FAQ & Blog Sections Styling */
+        .content-section {
+            max-width: 700px;
+            margin: 30px auto;
+            text-align: left;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .content-section h2 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .content-section h3 {
+            color: var(--text-color);
+            font-size: 1rem;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        .content-section p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .blog-tip {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
         @media (max-width: 600px) {
             .input-area {
                 border-radius: 12px;
@@ -301,49 +338,26 @@
         
         <p id="error-msg">Please enter a valid YouTube URL.</p>
 
+        <!-- Affiliate Link -->
         <div class="affiliate-link">
             Recommended video editor: <a href="https://example.com/affiliate-link" target="_blank" rel="noopener nofollow">Try it free here</a>
         </div>
 
-        <div style="min-height:90px; display:flex; align-items:center; justify-content:center; margin:20px auto; max-width:728px;">
-    <script>
-        atOptions = {
-            'key' : '580b77679d7387d8575ddbb982dcc4c2',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-        };
-    </script>
-    <script src="https://throughalivemedication.com/580b77679d7387d8575ddbb982dcc4c2/invoke.js"></script>
-</div>
-        <!-- FAQ Section for SEO -->
-<div style="max-width: 700px; margin: 30px auto; text-align: left; background: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color);">
-    <h2 style="text-align: center; color: var(--accent-color); margin-bottom: 20px;">Frequently Asked Questions</h2>
-    
-    <h3 style="color: var(--text-color); font-size: 1rem;">1. How do I download a YouTube thumbnail?</h3>
-    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Simply paste the YouTube video URL in the box above and click "Get Thumbnails". You'll see thumbnails in HD, SD, and MQ quality. Click "Download" to save any quality you need.</p>
-    
-    <h3 style="color: var(--text-color); font-size: 1rem;">2. Is this YouTube thumbnail downloader free?</h3>
-    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Yes! This tool is 100% free. No signup, no hidden charges. Download as many thumbnails as you want.</p>
-    
-    <h3 style="color: var(--text-color); font-size: 1rem;">3. What thumbnail qualities are available?</h3>
-    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">We provide three qualities: HD (1080p/720p), Standard (480p), and Medium (360p). The HD thumbnail may not be available for all videos.</p>
-    
-    <h3 style="color: var(--text-color); font-size: 1rem;">4. Can I download YouTube thumbnails on mobile?</h3>
-    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Absolutely! This tool is fully mobile responsive. Works on Android, iPhone, and tablets.</p>
-    
-    <h3 style="color: var(--text-color); font-size: 1rem;">5. Is it legal to download YouTube thumbnails?</h3>
-    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Yes, downloading thumbnails for personal use is fine. But always respect copyright and don't use them commercially without permission.</p>
-</div>
-
-        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
-            <a href="about.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">About Us</a>
-            <a href="privacy.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Privacy Policy</a>
-            <a href="contact.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Contact Us</a>
+        <!-- Adsterra Ad Unit (your existing key) -->
+        <div class="ad-placeholder">
+            <script>
+                atOptions = {
+                    'key' : '580b77679d7387d8575ddbb982dcc4c2',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://throughalivemedication.com/580b77679d7387d8575ddbb982dcc4c2/invoke.js"></script>
         </div>
-        <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">© 2025 YouTube Thumbnail Downloader. All rights reserved.</p>
 
+        <!-- Thumbnail Result Cards -->
         <div class="thumbnail-grid">
             <div class="thumbnail-card" id="card-max">
                 <img id="img-max" src="" alt="Maximum Resolution Thumbnail">
@@ -369,8 +383,60 @@
                 </div>
             </div>
         </div>
+
+        <!-- ==================== FAQ SECTION ==================== -->
+        <div class="content-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>1. How do I download a YouTube thumbnail?</h3>
+            <p>Simply paste the YouTube video URL in the box above and click "Get Thumbnails". You'll see thumbnails in HD, SD, and MQ quality. Click "Download" to save any quality you need.</p>
+            
+            <h3>2. Is this YouTube thumbnail downloader free?</h3>
+            <p>Yes! This tool is 100% free. No signup, no hidden charges. Download as many thumbnails as you want.</p>
+            
+            <h3>3. What thumbnail qualities are available?</h3>
+            <p>We provide three qualities: HD (1080p/720p), Standard (480p), and Medium (360p). The HD thumbnail may not be available for all videos.</p>
+            
+            <h3>4. Can I download YouTube thumbnails on mobile?</h3>
+            <p>Absolutely! This tool is fully mobile responsive. Works on Android, iPhone, and tablets.</p>
+            
+            <h3>5. Is it legal to download YouTube thumbnails?</h3>
+            <p>Yes, downloading thumbnails for personal use is fine. But always respect copyright and don't use them commercially without permission.</p>
+        </div>
+
+        <!-- ==================== BLOG TIPS SECTION (NEW) ==================== -->
+        <div class="content-section">
+            <h2>📝 Tips & Tricks for Better YouTube Thumbnails</h2>
+            
+            <div class="blog-tip">
+                <h3>🎨 5 Design Secrets to Boost Your Click-Through Rate</h3>
+                <p>High-contrast colors, close-up faces, and bold text overlays can increase your video views by up to 30%. Use our downloader to study the thumbnails of your favourite creators and reverse-engineer their style.</p>
+            </div>
+            
+            <div class="blog-tip">
+                <h3>📐 The Perfect Thumbnail Size: 1280×720 Pixels</h3>
+                <p>YouTube recommends a resolution of 1280×720 pixels with a 16:9 aspect ratio. Our HD download gives you the max resolution thumbnail directly from the video source so you can see exactly what works.</p>
+            </div>
+            
+            <div class="blog-tip">
+                <h3>🔍 How to Analyze Competitor Thumbnails in 30 Seconds</h3>
+                <p>Copy the video link of any trending video, paste it into our tool, and grab the thumbnail. Look at the colour palette, text placement, and emotional cues they used. Adapt those ideas for your own videos.</p>
+            </div>
+            
+            <div class="blog-tip">
+                <h3>💡 Why Some HD Thumbnails Don’t Work & How to Fix Them</h3>
+                <p>Sometimes YouTube doesn’t generate a max‑res thumbnail for videos uploaded at lower resolutions. If our HD option appears blank, try the SD or MQ download. Still, the image can be upscaled for free with other tools.</p>
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+            <a href="about.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">About Us</a>
+            <a href="privacy.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Privacy Policy</a>
+            <a href="contact.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Contact Us</a>
+        </div>
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">© 2025 YouTube Thumbnail Downloader. All rights reserved.</p>
     </div>
-    
 
     <script>
         // Store current URLs globally for download functionality
@@ -403,7 +469,6 @@
             }
         }
 
-        // Initialize theme instantly on page load
         initTheme();
 
         // --- Core Application Logic ---
@@ -426,12 +491,10 @@
 
             errorMsg.style.display = 'none';
 
-            // Construct URLs
             currentThumbnails.max = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
             currentThumbnails.sd = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
             currentThumbnails.hq = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
-            // Assign images sources and show components
             displayCard('max', currentThumbnails.max);
             displayCard('sd', currentThumbnails.sd);
             displayCard('hq', currentThumbnails.hq);
@@ -440,7 +503,6 @@
         function displayCard(type, url) {
             const card = document.getElementById(`card-${type}`);
             const img = document.getElementById(`img-${type}`);
-            
             img.src = url;
             card.style.display = 'flex';
         }
@@ -451,28 +513,22 @@
             document.getElementById('card-hq').style.display = 'none';
         }
 
-        // Bypasses browser navigation to directly prompt a download file dialog
         async function forceDownload(type) {
             const imageUrl = currentThumbnails[type];
             if (!imageUrl) return;
 
             try {
-                // Fetch the image via blob to bypass normal anchor tag navigation rules
                 const response = await fetch(imageUrl);
                 const blob = await response.blob();
                 const objectUrl = URL.createObjectURL(blob);
-                
                 const link = document.createElement('a');
                 link.href = objectUrl;
                 link.download = `youtube_thumbnail_${type}.jpg`;
                 document.body.appendChild(link);
                 link.click();
-                
-                // Cleanup
                 document.body.removeChild(link);
                 URL.revokeObjectURL(objectUrl);
             } catch (error) {
-                // Fallback method if CORS issues occur in certain test environments
                 window.open(imageUrl, '_blank');
             }
         }
